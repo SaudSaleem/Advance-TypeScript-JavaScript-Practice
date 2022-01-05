@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Refresh page after 30 seconds -->
+    <meta http-equiv="refresh" content="30" />
+    <script>
+      let str = new String(); // Declares x as a String object
+      let num = new Number(); // Declares y as a Number object
+      let bool = new Boolean(); // Declares z as a Boolean object
+
+      function changeTxt() {
+        let str = "By Invo";
+
+        document.getElementById("demo").innerHTML = str;
+      }
+      //show my info
+      function showMyInfo() {
+        let obj = {
+          name: "saud saleem",
+          age: "23",
+          showInfo: function () {
+            alert(`My name is ${this.name} and my age is ${this.age}`);
+          },
+        };
+        //invoke object method
+        obj.showInfo();
+      }
+      //EVENT HANDLERS
+      function clickevent() {
+        document.write("sOME one click me");
+      }
+      function mouseoverevent() {
+        console.log("someone mouseover me");
+      }
+      function focusevent() {
+        document.getElementById("input1").style.background = "black";
+      }
+      function keydownevent() {
+        document.getElementById("input1");
+        alert("Pressed a key");
+      }
+      function redirectToGoogle() {
+        window.location.href = "https://www.google.com";
+      }
+      //redirect to Google.com using location.href
+      function redirectToFB() {
+        window.location.href = "https://www.google.com";
+      }
+      //redirect to Facebook.com using location.replace
+      function redirectToFacebook() {
+        window.location.replace("http://www.w3schools.com");
+      }
+      //JAVASCRIPT – Dialog Box
+      //alert dialog box
+      function alertName() {
+        alert("hello from saud");
+      }
+      //   confirmation dialog
+      function confirmDialog() {
+        if (confirm("Is your name is Saud")) {
+          console.log("Hello Saud");
+        } else {
+          console.log("Hello anonymous man");
+        }
+      }
+      //   Prompt dialog
+      function promptDialog() {
+        let name = prompt("Please enter your name:", "Anonymous");
+        if (name == null || name == "") {
+          consoel.log("You did not share your name");
+        } else {
+          console.log(name);
+        }
+      }
+      //   String manipulate
+      function manipulateString() {
+        let x = 10;
+        let y = 20;
+        console.log(x + y); // render 30
+
+        let x = "10";
+        let y = "20";
+        console.log(x + y); //render 1020
+        let x = 10;
+        let y = "20";
+        console.log(x + y); //render 1020
+        let x = "100";
+        let y = "10";
+        console.log(x + y); //render 10
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Demo</h2>
+    <p id="demo">Hello Invo</p>
+    <button type="button" onclick="changeTxt()">click me</button>
+    <button type="button" onclick="showMyInfo()">Show my info</button>
+    <!-- click event -->
+    <form>
+      <input type="button" onclick="clickevent()" value="Who's this?" />
+    </form>
+    <!-- MouseOver Event -->
+    <p onmouseover="mouseoverevent()">Keep cursor over me</p>
+    <!-- focus event -->
+    <input type="text" id="input1" onfocus="focusevent()" />
+    <!-- Keydown Event -->
+    <input type="text" id="input1" onkeydown="keydownevent()" />
+    <!-- JAVASCRIPT – Page Redirect  -->
+    <button onclick="redirectToGoogle()">Redirect to google</button>
+    <button onclick="redirectToFacebook()">Redirect to facebook</button>
+    <!-- JS refresh -->
+    <button onclick="location.reload()">Refresh Page</button>
+    <!-- Dialog box -->
+    <!-- alert btn -->
+    <button onclick="alertName()">Alert My Name</button>
+    <!-- Confirmation box -->
+    <button onclick="confirmDialog()">Verify your name</button>
+    <!-- Prompt box -->
+    <button onclick="promptDialog()">Whats your name</button>
+    <!-- string manipulations -->
+    <button onclick="manipulateString()">Manipulate String</button>
+  </body>
+</html>
