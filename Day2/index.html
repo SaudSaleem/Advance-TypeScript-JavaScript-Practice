@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Refresh page after 30 seconds -->
+    <meta http-equiv="refresh" content="30" />
+    <script src="./date.js"> </script>
+  </head>
+  <body>
+    <h2>Demo</h2>
+    <p id="demo">Hello Invo</p>
+    <button type="button" onclick="showCurrentTime()">show me date</button>
+    <button type="button" onclick="showMyInfo()">Show today date</button>
+    <!-- click event -->
+    <form>
+      <input type="button" onclick="clickevent()" value="Who's this?" />
+    </form>
+    <!-- MouseOver Event -->
+    <p onmouseover="mouseoverevent()">Keep cursor over me</p>
+    <!-- focus event -->
+    <input type="text" id="input1" onfocus="focusevent()" />
+    <!-- Keydown Event -->
+    <input type="text" id="input1" onkeydown="keydownevent()" />
+    <!-- JAVASCRIPT – Page Redirect  -->
+    <button onclick="redirectToGoogle()">Redirect to google</button>
+    <button onclick="redirectToFacebook()">Redirect to facebook</button>
+    <!-- JS refresh -->
+    <button onclick="location.reload()">Refresh Page</button>
+    <!-- Dialog box -->
+    <!-- alert btn -->
+    <button onclick="alertName()">Alert My Name</button>
+    <!-- Confirmation box -->
+    <button onclick="confirmDialog()">Verify your name</button>
+    <!-- Prompt box -->
+    <button onclick="promptDialog()">Whats your name</button>
+    <!-- string manipulations -->
+    <button onclick="manipulateString()">Manipulate String</button>
+  </body>
+</html>
