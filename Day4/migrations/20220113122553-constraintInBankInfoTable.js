@@ -8,10 +8,10 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    queryInterface.addConstraint("Users", {
-      fields: ["createdAt"],
+    queryInterface.addConstraint("bankInfo", {
+      fields: ["bankName"],
       type: "unique",
-      name: "custom_unique_constraint_name",
+      name: "custom_unique_bankName",
     });
   },
 
@@ -22,6 +22,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    queryInterface.removeConstraint("Users", "custom_unique_constraint_name");
+    queryInterface.removeConstraint("Users", "custom_unique_bankName");
   },
 };

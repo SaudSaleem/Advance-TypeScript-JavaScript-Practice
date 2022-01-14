@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+//const userBackupTable = require("../models").userBackUpTable;
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,12 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(
-        models.bankInfo,
-        {
-          foreignKey: 'userId'
-        }
-      )
+      User.hasOne(models.bankInfo, {
+        foreignKey: "userId",
+      });
     }
   }
   User.init(
@@ -22,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       // Model attributes are defined here
       firstName: {
         type: DataTypes.STRING,
-        unique: true,
       },
       lastName: DataTypes.STRING,
       email: DataTypes.STRING,
@@ -33,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
     }
   );
-  console.log("isers", User);
+  // Method 2 via the .addHook() method
+  User.addHook("afterCreate", (user, options) => {
+    sequelize.models.userBackUpTable.create({
+      userId: user.dataValues.id.toString(),
+    });
+  });
   return User;
 };

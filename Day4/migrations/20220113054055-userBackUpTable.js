@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -8,11 +8,19 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    queryInterface.addConstraint("Users", {
-      fields: ["createdAt"],
-      type: "unique",
-      name: "custom_unique_constraint_name",
-    });
+     queryInterface.createTable(
+      'userBackUpTable',
+      {
+        id: {
+          type: Sequelize.DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
+        userId:{
+          type: Sequelize.DataTypes.STRING
+        }
+      },
+    )
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -22,6 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    queryInterface.removeConstraint("Users", "custom_unique_constraint_name");
-  },
+     await queryInterface.dropTable('userBackUpTable');
+  }
 };

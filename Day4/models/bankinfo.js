@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   bankInfo.init({
-    bankName: DataTypes.STRING,
+    bankName: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
     accountNo: DataTypes.STRING
   }, {
     sequelize,

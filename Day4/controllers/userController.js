@@ -1,5 +1,9 @@
 const usersModel = require("../models").User;
 const bankInfoModel = require("../models").bankInfo;
+//import logger class for emitting and listeing to events
+const Logger = require("../logger")
+const logger = new Logger();
+
 //import JOI module for input validation
 const Joi = require("joi");
 //method to validate user input
@@ -54,6 +58,12 @@ const addUser = async (req, res) => {
         password: req.body.password
       });
       res.status(201).send(addedUser);
+      //raise an event that user is created and console the data of newly created user
+      logger.on('userCreated',(arg) => {
+        console.log(arg)
+      })
+      logger.log(`LISTNER CALLED AND NEW USER IS CREATED`)
+      
     } catch (e) {
       if (e.name === "SequelizeValidationError") {
         return res.status(400).json({
