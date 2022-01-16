@@ -1,5 +1,6 @@
 const usersModel = require("../models").User;
 const bankInfoModel = require("../models").bankInfo;
+const contactInfoModel = require("../models").contactInfo;
 //import logger class for emitting and listeing to events
 const Logger = require("../logger")
 const logger = new Logger();
@@ -19,8 +20,21 @@ function validateUser(user) {
 }
 
  //return all users with bank account details
+ // one to one relation
 const getUsersBankInformation = async (req, res) => {
-  let users = await usersModel.findAll({ include: bankInfoModel });
+  try{
+  let users = await usersModel.findAll({ include: bankInfoModele });
+  res.status(200).send(users);
+  }
+  catch (error) { 
+    console.log("this is error",error)
+    res.status(400).json({error: error.toString()});
+  }
+};
+//return all users with contact details
+//one to many realtion
+const getUsersContactInformation = async (req, res) => {
+  let users = await usersModel.findAll({ include: contactInfoModel });
   res.status(200).send(users);
 };
 
@@ -32,6 +46,8 @@ const getAllUsers = async (req, res) => {
 
 //return only one user based on given "ID"
 const getUserById = async (req, res) => {
+  console.log("errors")
+  try{
   let user = await usersModel.findAll({
     where: {
       id: req.params.id,
@@ -39,6 +55,13 @@ const getUserById = async (req, res) => {
   });
   if (!user) res.status(404).send("User with given id is not found!");
   else res.status(200).send(user);
+}
+catch(error)
+{
+  console.log("error",error)
+  res.status(400).json({error: error.toString()});
+}
+  
 };
 
 // add/post new user in user tablez
@@ -64,7 +87,8 @@ const addUser = async (req, res) => {
       })
       logger.log(`LISTNER CALLED AND NEW USER IS CREATED`)
       
-    } catch (e) {
+    } 
+    catch (e) {
       if (e.name === "SequelizeValidationError") {
         return res.status(400).json({
           success: false,
@@ -150,5 +174,6 @@ module.exports = {
   addUser,
   updateUser,
   deleteUser,
-  getUsersBankInformation
+  getUsersBankInformation,
+  getUsersContactInformation
 };
