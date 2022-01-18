@@ -1,3 +1,4 @@
+let  hello = require("./main1"); // import TYPESCRIPT File
 //var http = require('http');
 const express = require("express");
 const app = express();
@@ -43,3 +44,6 @@ app.use("/api/orderRoutes", orderRoutes);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
+console.log('HELLO FRIM INDEX JS')
+hello()
